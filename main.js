@@ -9,6 +9,11 @@ button.addEventListener("click", () => {
     createGrid(newGrid);
 });
 
+function random_rgba() {
+    let o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+}
+
 function removeGrid(size = Math.sqrt(grids.length)) {
     if (grids.length > 0 && size > 0) {
         grids.forEach((div) => container.removeChild(div));
@@ -26,10 +31,11 @@ function createGrid(size = 16) {
         div.classList.add("grid");
         div.style.width = `${100 / size}%`;
         div.addEventListener("mouseover", (e) => {
-            e.target.classList.add("hover");
+            e.target.style.backgroundColor = random_rgba();
         })
         container.appendChild(div);
     });
 }
+
 
 createGrid();
